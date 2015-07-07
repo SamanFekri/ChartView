@@ -44,21 +44,7 @@ public class GraphChartView extends RelativeLayout {
 
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		for (int i = 0; i < curveds.size(); i++) {
-			LineOfChart lineOfChart = curveds.get(i);
-			ArrayList<PointF> points = lineOfChart.getPoints();
-
-			mPaint.setColor(lineOfChart.getLineColor());
-			mPaint.setStrokeWidth(lineOfChart.getLineStrokeWidth());
-			for (int j = 0; j < points.size() - 1; j++) {
-
-				canvas.drawLine(getWidth() / 2 + points.get(j).x * getWidth()/ (rangex.second - rangex.first),
-						getHeight() / 2 - points.get(j).y * getHeight() / (rangey.second - rangey.first),
-						getWidth() / 2 + points.get(j + 1).x * getWidth()/ (rangex.second - rangex.first),
-						getHeight() / 2 - points.get(j + 1).y * getHeight() / (rangey.second - rangey.first), mPaint);
-			}
-		}
-
+		
 		mPaint.setColor(Color.GRAY);
 		mPaint.setStrokeWidth(1);
 
@@ -85,6 +71,23 @@ public class GraphChartView extends RelativeLayout {
 			canvas.drawText(rangey.second - deltaY * i + "", 0, getHeight() / 8
 					* i, mPaint);
 		}
+		
+		for (int i = 0; i < curveds.size(); i++) {
+			LineOfChart lineOfChart = curveds.get(i);
+			ArrayList<PointF> points = lineOfChart.getPoints();
+
+			mPaint.setColor(lineOfChart.getLineColor());
+			mPaint.setStrokeWidth(lineOfChart.getLineStrokeWidth());
+			for (int j = 0; j < points.size() - 1; j++) {
+
+				canvas.drawLine(getWidth() / 2 + points.get(j).x * getWidth()/ (rangex.second - rangex.first),
+						getHeight() / 2 - points.get(j).y * getHeight() / (rangey.second - rangey.first),
+						getWidth() / 2 + points.get(j + 1).x * getWidth()/ (rangex.second - rangex.first),
+						getHeight() / 2 - points.get(j + 1).y * getHeight() / (rangey.second - rangey.first), mPaint);
+			}
+		}
+
+
 	}
 
 	public void addCurved(LineOfChart lineOfChart) {
