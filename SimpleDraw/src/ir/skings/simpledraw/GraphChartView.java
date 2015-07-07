@@ -51,13 +51,14 @@ public class GraphChartView extends RelativeLayout {
 			mPaint.setColor(lineOfChart.getLineColor());
 			mPaint.setStrokeWidth(lineOfChart.getLineStrokeWidth());
 			for (int j = 0; j < points.size() - 1; j++) {
-				canvas.drawLine(getWidth() / 2 + points.get(j).x, getHeight()
-						/ 2 - points.get(j).y,
-						getWidth() / 2 + points.get(j + 1).x, getHeight() / 2
-								- points.get(j + 1).y, mPaint);
+
+				canvas.drawLine(getWidth() / 2 + points.get(j).x * getWidth()/ (rangex.second - rangex.first),
+						getHeight() / 2 - points.get(j).y * getHeight() / (rangey.second - rangey.first),
+						getWidth() / 2 + points.get(j + 1).x * getWidth()/ (rangex.second - rangex.first),
+						getHeight() / 2 - points.get(j + 1).y * getHeight() / (rangey.second - rangey.first), mPaint);
 			}
 		}
-		
+
 		mPaint.setColor(Color.GRAY);
 		mPaint.setStrokeWidth(1);
 
@@ -71,8 +72,8 @@ public class GraphChartView extends RelativeLayout {
 			}
 
 			for (int i = 0; i <= 8; i++) {
-				canvas.drawLine(0, (getHeight() / 8 * i),
-						getWidth(), (getHeight() / 8 * i), mPaint);
+				canvas.drawLine(0, (getHeight() / 8 * i), getWidth(),
+						(getHeight() / 8 * i), mPaint);
 			}
 		}
 
@@ -81,7 +82,8 @@ public class GraphChartView extends RelativeLayout {
 					(getWidth() / 10 * i) - 5, getHeight(), mPaint);
 		}
 		for (int i = 0; i < 8; i++) {
-			canvas.drawText(rangey.second - deltaY * i +"", 0, getHeight() / 8 * i, mPaint);
+			canvas.drawText(rangey.second - deltaY * i + "", 0, getHeight() / 8
+					* i, mPaint);
 		}
 	}
 
